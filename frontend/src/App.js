@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CareersPage from './pages/CareersPage';
 import JobDetailPage from './pages/JobDetailPage';
 import AdminLogin from './pages/AdminLogin';
@@ -7,7 +7,7 @@ import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Routes>
           <Route path="/" element={<CareersPage />} />
@@ -18,7 +18,7 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
