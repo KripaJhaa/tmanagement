@@ -1,5 +1,7 @@
 # Dependencies - only root node_modules
 /node_modules
+/backend/node_modules
+/frontend/node_modules
 /package-lock.json
 
 # Environment files - ignore all env files except examples
