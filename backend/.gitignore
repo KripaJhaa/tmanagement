@@ -1,0 +1,21 @@
+# Environment variables
+.env
+
+# Dependencies
+/node_modules
+package-lock.json
+
+# Uploads except .gitkeep
+/uploads/*
+!/uploads/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
