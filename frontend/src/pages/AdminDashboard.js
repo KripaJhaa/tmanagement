@@ -67,7 +67,7 @@ function AdminDashboard() {
             'Content-Type': 'application/json'
           }
         });
-        setApplications(response.data);
+        setApplications(response.data.data);
         setLoading(false);
       } catch (err) {
         if (err.response?.status === 401) {
@@ -88,7 +88,7 @@ function AdminDashboard() {
             Authorization: authHeader()
           }
         });
-        setJobs(res.data);
+        setJobs(res.data.data);
       } catch (err) {
         console.error('Failed to load admin jobs', err);
       }

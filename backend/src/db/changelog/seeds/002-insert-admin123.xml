@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    
+    <changeSet id="seed-002-admin-user" author="kripajha" context="seed">
+        <comment>Seed initial admin user</comment>
+        
+        <insert tableName="admins">
+            <column name="username" value="admin123"/>
+            <column name="password_hash" value="$2b$10$RzZ6UYX1Ov3FjS1Q5SlXXOQowFX/X5O0FY5/B1M/mM.mX/BrM5E6."/>
+            <column name="company_id" valueComputed="(SELECT id FROM companies WHERE slug = 'admin123')"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="admins">
+                <where>username = 'admin123'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

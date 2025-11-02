@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    
+    <changeSet id="001" author="kripajha">
+        <comment>Add job status column</comment>
+        
+        <!-- Add status column -->
+        <addColumn tableName="jobs">
+            <column name="status" type="varchar(20)" defaultValue="draft">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        
+        <!-- Add status check constraint -->
+        <sql>
+            ALTER TABLE jobs 
+            ADD CONSTRAINT check_status 
+            CHECK (status IN ('draft', 'published', 'paused', 'closed'));
+        </sql>
+        
+        <!-- Rollback -->
+        <rollback>
+            ALTER TABLE jobs DROP CONSTRAINT check_status;
+            ALTER TABLE jobs DROP COLUMN status;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

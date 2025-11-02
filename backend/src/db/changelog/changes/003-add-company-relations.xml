@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    
+    <changeSet id="003-add-company-relations" author="kripajha">
+        <comment>Add company relations to jobs and applications tables</comment>
+        
+        <addColumn tableName="jobs">
+            <column name="company_id" type="int">
+                <constraints nullable="false" 
+                           foreignKeyName="fk_job_company"
+                           references="companies(id)"
+                           deleteCascade="true"/>
+            </column>
+        </addColumn>
+        
+        <addColumn tableName="applications">
+            <column name="company_id" type="int">
+                <constraints nullable="false" 
+                           foreignKeyName="fk_application_company"
+                           references="companies(id)"
+                           deleteCascade="true"/>
+            </column>
+        </addColumn>
+        
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="applications" constraintName="fk_application_company"/>
+            <dropForeignKeyConstraint baseTableName="jobs" constraintName="fk_job_company"/>
+            <dropColumn tableName="applications" columnName="company_id"/>
+            <dropColumn tableName="jobs" columnName="company_id"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

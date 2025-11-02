@@ -78,18 +78,25 @@ This project uses npm workspaces for efficient dependency management. The root `
    UPLOAD_DIR=uploads
    ```
 
-5. Apply database migrations:
+5. Apply database migrations and seeds:
    ```bash
-   # Run these in order
-   psql -d careers_db -f src/scripts/migrations/001-add-job-status.sql
-   psql -d careers_db -f src/scripts/migrations/002-create-companies-admins.sql
-   psql -d careers_db -f src/scripts/migrations/003-add-company-relations.sql
-   ```
-
-6. Seed initial admin company and user (optional):
-   ```bash
-   psql -d careers_db -f src/scripts/seeds/001-seed-admin123-company.sql
-   psql -d careers_db -f src/scripts/seeds/002-insert-admin123.sql
+   # Install Liquibase (macOS)
+   brew install liquibase
+   
+   # Install PostgreSQL JDBC driver
+   brew install postgresql-connector-java
+   
+   # Run all migrations and seeds
+   liquibase update
+   
+   # To rollback the last migration
+   liquibase rollbackCount 1
+   
+   # To see pending migrations
+   liquibase status
+   
+   # To generate SQL without executing
+   liquibase updateSQL
    ```
 
 7. Start the backend server:

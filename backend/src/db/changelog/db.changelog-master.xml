@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    
+    <!-- Schema Changes -->
+    <include file="src/db/changelog/changes/001-add-job-status.xml"/>
+    <include file="src/db/changelog/changes/002-create-companies-admins.xml"/>
+    <include file="src/db/changelog/changes/003-add-company-relations.xml"/>
+    
+    <!-- Seed Data -->
+    <include file="src/db/changelog/seeds/001-seed-admin123-company.xml"/>
+    <include file="src/db/changelog/seeds/002-insert-admin123.xml"/>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    
+    <changeSet id="seed-001-admin-company" author="kripajha" context="seed">
+        <comment>Seed initial admin company</comment>
+        
+        <insert tableName="companies">
+            <column name="name" value="Admin Company"/>
+            <column name="slug" value="admin123"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="companies">
+                <where>slug = 'admin123'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
