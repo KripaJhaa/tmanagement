@@ -1,9 +1,50 @@
+# Dependencies - only root node_modules
 /node_modules
-*/.env
-*/.env.local
-*/.env.development
-*/.env.production
-*/.env.test
-.DS_Store
+/package-lock.json
+
+# Environment files - ignore all env files except examples
+**/.env
+**/.env.local
+**/.env.development
+**/.env.production
+**/.env.test
+
+# But keep example env files for project setup
+!.env.example
+!.env.development.example
+!/backend/.env.example
+!/frontend/.env.example
+
+# Build and output directories
+/build/
+/dist/
+/frontend/build/
+/backend/dist/
+
+# Upload directory - ignore contents but keep directory
+/backend/uploads/*
+!/backend/uploads/.gitkeep
+
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+**/.DS_Store
+
+# Test coverage
+/coverage
+/frontend/coverage
+/backend/coverage
+
+# Temporary files
+*.log
+.tmp/
+.temp/

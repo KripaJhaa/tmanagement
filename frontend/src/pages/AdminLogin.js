@@ -35,7 +35,6 @@ function AdminLogin() {
             headers: { Authorization: `Basic ${encodedAuth}` }
           });
           if (settings.data?.company) {
-            console.log('Persisting company info locally for admin:', settings.data.company);
             localStorage.setItem('companyId', settings.data.company.company_id);
             localStorage.setItem('companySlug', settings.data.company.slug || settings.data.company.name?.toLowerCase().replace(/[^a-z0-9]+/g,'-'));
           }

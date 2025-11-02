@@ -1,0 +1,25 @@
+{
+  "name": "career-portal",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:frontend": "cross-env PORT=${FRONTEND_PORT:-3001} npm start --workspace=frontend",
+    "start:backend": "cross-env PORT=${BACKEND_PORT:-3000} npm start --workspace=backend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cross-env PORT=${FRONTEND_PORT:-3001} npm run start --workspace=frontend",
+    "dev:backend": "cross-env PORT=${BACKEND_PORT:-3000} npm run dev --workspace=backend",
+    "install:all": "npm install",
+    "clean": "rm -rf node_modules && rm -rf frontend/node_modules && rm -rf backend/node_modules",
+    "build": "npm run build --workspaces",
+    "start:custom": "concurrently \"BACKEND_PORT=$1 npm run start:backend\" \"FRONTEND_PORT=$2 npm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0",
+    "cross-env": "^7.0.3"
+  }
+}
